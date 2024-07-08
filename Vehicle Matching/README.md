@@ -66,9 +66,11 @@
 3. **Crop and Detect License Plate**
    - For each detected car:
      - Use YOLOv8 to identify and crop out the license plate area.
-     ![plate_detected.png](PS%2013%20Vehicle%20Movement%20Analysis%20and%20Insight%20Genera%2043441ba432854ab2918956557c0acbaa/plate_detected.png)
-     - Deskew the license plate image to correct any skew.
-     ![deskewed_plate.png](PS%2013%20Vehicle%20Movement%20Analysis%20and%20Insight%20Genera%2043441ba432854ab2918956557c0acbaa/deskewed_plate.png)
+     ![plate_detected](https://github.com/ayush-raj13/anpr-and-parking-occupancy-analysis/assets/113297899/e27d9680-c8f1-47a5-a929-06b3f292bb31)
+
+     - Deskew the license plate image to correct any skew. <br />
+     ![deskewed_plate](https://github.com/ayush-raj13/anpr-and-parking-occupancy-analysis/assets/113297899/60e00a8a-7510-428a-bcec-11182ccb064c)
+
 4. **Image Processing for OCR**
 
    - Convert the cropped license plate image to grayscale:
@@ -76,21 +78,24 @@
      gray = cv.cvtColor(corrected_plate, cv.COLOR_BGR2GRAY)
      ```
 
-   ![gray_scale_before.png](PS%2013%20Vehicle%20Movement%20Analysis%20and%20Insight%20Genera%2043441ba432854ab2918956557c0acbaa/gray_scale_before.png)
+   ![gray_scale_before](https://github.com/ayush-raj13/anpr-and-parking-occupancy-analysis/assets/113297899/0de43087-c254-44ba-88a8-7446df55850d)
+
 
    - Apply noise reduction using a bilateral filter:
      ```python
      bfilter = cv.bilateralFilter(gray, 11, 17, 17)
      ```
 
-   ![bfilter.png](PS%2013%20Vehicle%20Movement%20Analysis%20and%20Insight%20Genera%2043441ba432854ab2918956557c0acbaa/bfilter.png)
+   ![bfilter](https://github.com/ayush-raj13/anpr-and-parking-occupancy-analysis/assets/113297899/64ad44f2-3519-44b7-905d-998ed6b6bc3f)
+
 
    - Perform edge detection using Canny:
      ```python
      edged = cv.Canny(bfilter, 30, 200)
      ```
 
-   ![edged.png](PS%2013%20Vehicle%20Movement%20Analysis%20and%20Insight%20Genera%2043441ba432854ab2918956557c0acbaa/edged.png)
+   ![edged](https://github.com/ayush-raj13/anpr-and-parking-occupancy-analysis/assets/113297899/22c5d164-27f4-4c8a-b321-a8534f169641)
+
 
    - Find contours and filter them:
      ```python
@@ -110,14 +115,16 @@
      new_image = cv.drawContours(mask, [location], 0, 255, -1)
      ```
 
-   ![draw_contours.png](PS%2013%20Vehicle%20Movement%20Analysis%20and%20Insight%20Genera%2043441ba432854ab2918956557c0acbaa/draw_contours.png)
+   ![draw_contours](https://github.com/ayush-raj13/anpr-and-parking-occupancy-analysis/assets/113297899/3f7cc226-96b5-4453-bc36-00cc715bab98)
+
 
    - Apply the mask to isolate the license plate:
      ```python
      new_image = cv.bitwise_and(corrected_plate, corrected_plate, mask=mask)
      ```
 
-   ![bitwise_and.png](PS%2013%20Vehicle%20Movement%20Analysis%20and%20Insight%20Genera%2043441ba432854ab2918956557c0acbaa/bitwise_and.png)
+   ![bitwise_and](https://github.com/ayush-raj13/anpr-and-parking-occupancy-analysis/assets/113297899/3499ed8a-215d-467e-bb6d-042aade260af)
+
 
    - Sharpen the license plate image for better OCR:
      ```python
@@ -125,13 +132,16 @@
      sharpened_image = cv.filter2D(cropped_image, -1, kernel)
      ```
 
-   ![sharpened.png](PS%2013%20Vehicle%20Movement%20Analysis%20and%20Insight%20Genera%2043441ba432854ab2918956557c0acbaa/sharpened.png)
+   ![sharpened](https://github.com/ayush-raj13/anpr-and-parking-occupancy-analysis/assets/113297899/fc2597c7-dc2e-4170-aa19-5482228cf541)
+
 
 5. **Perform OCR using EasyOCR**
-   - Convert the sharpened image to grayscale:
-     [https://drive.google.com/uc?export=view&id=18XeOZ4FoLamlXNllZL7ZrQ4UBOyVfWum](https://drive.google.com/uc?export=view&id=18XeOZ4FoLamlXNllZL7ZrQ4UBOyVfWum)
-   - Convert the grayscale image to black and white:
-     [https://drive.google.com/uc?export=view&id=1sRRyPCAkRsy11ciK4yff6OZuMTt5Eip5](https://drive.google.com/uc?export=view&id=1sRRyPCAkRsy11ciK4yff6OZuMTt5Eip5)
+   - Convert the sharpened image to grayscale: <br />
+     ![gray_scale_after](https://github.com/ayush-raj13/anpr-and-parking-occupancy-analysis/assets/113297899/f143ce05-dbcb-478c-82e3-91091e8f9432)
+
+   - Convert the grayscale image to black and white: <br />
+     ![black_and_white](https://github.com/ayush-raj13/anpr-and-parking-occupancy-analysis/assets/113297899/a57b86ad-9368-4da7-8959-4c38507c4c56)
+
    - Feed the processed image to EasyOCR for character recognition.
 6. **Filter and Validate License Plate Reading**
    - Filter out non-alphanumeric characters and smaller strings not matching license plate dimensions.
