@@ -1,5 +1,53 @@
 # PS 13: Vehicle Movement Analysis and Insight Generation in a College Campus using Edge AI
 
+## Setup Instructions
+
+To set up the project, follow these steps:
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/ayush-raj13/anpr-and-parking-occupancy-analysis.git
+   cd Parking Occupancy and Insight Generation
+   ```
+
+2. **Create and Activate a Virtual Environment**:
+   ```bash
+   python -m venv env
+   source env/bin/activate  # On Windows use `env\Scripts\activate`
+   ```
+
+3. **Install the Dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Install Jupyter Notebook** (if not already included in the `requirements.txt`):
+   ```bash
+   pip install jupyter
+   ```
+
+5. **Start Jupyter Notebook**:
+   ```bash
+   jupyter notebook
+   ```
+
+This will open Jupyter Notebook in your default web browser.
+
+## Running the Notebooks
+
+After setting up the environment and starting Jupyter Notebook, you can open and run the notebooks as needed.
+
+## Libraries Used
+
+- OpenCV (cv2)
+- pandas
+- numpy
+- ultralytics
+- matplotlib
+- jupyter
+- datetime (part of Python's standard library)
+- os (part of Python's standard library)
+
 # Unique Idea Brief
 ### Occupancy Monitoring:
 
