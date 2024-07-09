@@ -7,7 +7,7 @@ To set up the project, follow these steps:
 1. **Clone the Repository**:
    ```bash
    git clone https://github.com/ayush-raj13/anpr-and-parking-occupancy-analysis.git
-   cd Parking Occupancy and Insight Generation
+   cd anpr-and-parking-occupancy-analysis/Parking Occupancy and Insight Generation
    ```
 
 2. **Create and Activate a Virtual Environment**:
