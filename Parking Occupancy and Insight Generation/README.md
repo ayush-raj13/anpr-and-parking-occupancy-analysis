@@ -30,19 +30,19 @@ https://mega.nz/file/4w0UCRyJ#TV55n4q-1j4jLCHtT_jmDZjMGdvny0-4Nlj8hAImd7Y
 
 ### Process Flow for Occupancy monitoring and Vehicle movement analysis:
 
-![flowChart.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/689c7499-36d0-4d4c-88de-8cbb5a80796a/6bd931c7-fbc0-4bc2-854e-00c96b7e9342/flowChart.png)
+![flowChart.png](flowChart.png)
 
 1. **Area of Interest (AOI):**
     - Specify the area of interest for the frame of the same size as the screen in which video is going to play.
     
-    ![Screenshot 2024-07-07 213535.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/689c7499-36d0-4d4c-88de-8cbb5a80796a/cc352968-af97-404e-a564-b9f6f6e833b0/ab2bff60-58a7-42cf-850c-dab0d7952c6a.png)
+    ![Screenshot 2024-07-07 213535.png](Screenshot%202024-07-07%20213535.png)
     
 2. **Object detection using YOLOv8:**
     - Whenever a car is detected in a frame check the position of the coordinate of the centre of the bounding box of the car.
     - Use “pointPolygonTest” to check if the centre is inside or outside the AOI (i.e. parking space).
     - If the point is inside the AOI, then mark the parking-space as occupied.
     
-    ![free space count is specified on the top-left corner](https://prod-files-secure.s3.us-west-2.amazonaws.com/689c7499-36d0-4d4c-88de-8cbb5a80796a/25360f19-9f35-4f38-b377-f5d1cf6b2dc3/Screenshot_2024-07-07_213743.png)
+    ![free space count is specified on the top-left corner](Screenshot%202024-07-07%20213743.png)
     
     Free space count is specified on the top-left corner
     
@@ -53,7 +53,7 @@ https://mega.nz/file/4w0UCRyJ#TV55n4q-1j4jLCHtT_jmDZjMGdvny0-4Nlj8hAImd7Y
     - The number of cars is resampled for a specific time duration (20s / 30min/ 1hr) and its mean is taken. Resampled data’s mean and standard deviation are found.
     - Mean and standard deviation are used to calculate the range of [minCarCount, maxCarCount]. Values above and below these values are considered as least crowded and most crowded time.
 
-![Screenshot 2024-07-06 075537.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/689c7499-36d0-4d4c-88de-8cbb5a80796a/31c716e5-e62b-47bf-8653-8b10918477f2/Screenshot_2024-07-06_075537.png)
+![Screenshot 2024-07-06 075537.png](Screenshot%202024-07-06%20075537.png)
 
 ---
 
